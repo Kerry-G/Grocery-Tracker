@@ -16,7 +16,9 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect('mongodb://192.168.2.24:27017/grocery-tracker')
+let dev = 'mongodb://192.168.2.24:27017/grocery-tracker';
+let prod = 'mongodb://127.0.0.1:8080/grocery-tracker'
+mongoose.connect(dev)
   .then(() =>  console.log('Mongo connection succesful'))
   .catch((err) => console.error(err));
 
@@ -26,9 +28,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'static/build')));
 
-app.use('/', indexRouter);
 app.use('/receipts', receiptsRouter);
 
 // catch 404 and forward to error handler

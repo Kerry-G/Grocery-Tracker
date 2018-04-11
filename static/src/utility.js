@@ -1,5 +1,5 @@
 export function fetchAPI(method, routes="", body = null) {
-    routes = "http://127.0.0.1:3001/receipts" + routes
+    routes = "/receipts" + routes
     let bodyData = JSON.stringify(body) 
     let myInit;
     return new Promise((res, rej) => {
