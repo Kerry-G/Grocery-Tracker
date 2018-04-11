@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <header>
+      <header onClick={this.props.onClick}>
           <h1>Grocery Tracker</h1>
       </header>
     );

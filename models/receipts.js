@@ -4,7 +4,8 @@ var ReceiptsSchema = new mongoose.Schema({
     name: { type: String, required: true },
     type: { type: String, required: true },
     amount: { type: Number, required: true },
-    date: Date
+    date: Date,
+    paid: Boolean,
 });
 
 module.exports = mongoose.model('Receipts', ReceiptsSchema);

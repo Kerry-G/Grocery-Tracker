@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Receipts = require('../models/Receipts.js');
 
 /* GET receipts listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   Receipts.find((err,receipts)=>{
     if (err) return next(err);
     res.json(receipts);
@@ -13,19 +13,26 @@ router.get('/', function(req, res, next) {
 });
 
 /* POST /receipts */
-router.post('/', function(req, res, next) {
-  console.log(req.body)
+router.post('/', (req, res, next) => {
   var receipts = ({
     name: req.body.name,
     type: req.body.type,
     amount:req.body.amount,
-    date: req.body.date
+    date: req.body.date,
+    paid: false
   })
   Receipts.create(receipts, (err, receipts) => {
     if (err) return next(err);
     res.json(receipts);
   });
 });
+
+/*UPDATE /receipts */
+router.patch('/', (req,res,next)=>{
+  Receipts.updateMany({paid:false},{ $set : {paid:true}},(err,receipts)=>
+    res.json(receipts)
+  )
+})
 
 /* GET /receipts/id */
 router.get('/:id', (req, res, next) => {

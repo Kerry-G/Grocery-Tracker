@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import Header from './components/Header'
-import Body from './components/Body'
+import FormReceipts from './components/FormReceipts'
+import Stats from './components/Stats'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stats: true
+    }
+  }
+
   render() {
     return (
       <div className="App">
-      <Header />
-      <Body />
+        <Header onClick={()=>this.setState({stats:!this.state.stats})}/>
+        <div className="container">
+          {this.state.stats ? <Stats /> : <FormReceipts />}
+        </div>
       </div>
     );
   }
