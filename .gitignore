@@ -2,12 +2,13 @@
 
 # dependencies
 /node_modules
+/static/node_modules
 
 # testing
-/coverage
+/static/coverage
 
 # production
-/build
+/static/build
 
 # misc
 .DS_Store
