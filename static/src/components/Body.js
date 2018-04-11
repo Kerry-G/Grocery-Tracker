@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { fetchAPI } from './../utility'
 import Form from 'muicss/lib/react/form';
 import Input from 'muicss/lib/react/input';
 import Select from 'muicss/lib/react/select';
@@ -10,10 +11,10 @@ class Body extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name:"camille",
-            amount:"",
-            startDate: moment(),
-            type:"grocery",
+            name: "camille",
+            amount: "",
+            date: moment(),
+            type: "grocery",
         };
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -21,28 +22,33 @@ class Body extends Component {
     }
 
     handleChangeDate(date) {
-        this.setState({
-            startDate: date
-        });
-        console.log(date)
+        this.setState({date});
     }
 
-    handleChangeAmount(e){
+    handleChangeAmount(e) {
         const amount = e.target.value
-        this.setState({amount})
+        this.setState({ amount })
     }
-    handleSubmit(e){
+    handleSubmit(e) {
         e.preventDefault()
         this.defaultState()
         console.log(this.state)
+        let date = this.state.date.format()
+        let body =({
+            name: this.state.name,
+            type: this.state.type,
+            amount: this.state.amount,
+            date
+        })
+        fetchAPI("POST", "", body)
     }
 
-    defaultState(){
+    defaultState() {
         this.setState({
-            name:"camille",
-            amount:"",
+            name: "camille",
+            amount: "",
             startDate: moment(),
-            type:"grocery"
+            type: "grocery"
         })
     }
 
@@ -50,39 +56,39 @@ class Body extends Component {
         return (
             <div className="container">
                 <Form>
-                <Select 
-                    label="Name" 
-                    defaultValue="Camille" 
-                    onChange={e=>{this.setState({name:e.target.value})}}
-                >
-                    <Option value="camille" label="Camille"/>
-                    <Option value="kerry"   label="Kerry"  />
-                </Select>
-                
-                <Select 
-                    label="type"
-                    onChange={e=>{this.setState({type:e.target.value})}}
-                >
-                    <Option value="grocery"  label="Grocery"  />
-                    <Option value="pharmacy" label="Pharmacy" />
-                    <Option value="other"    label="Option"   />
-                </Select>
+                    <Select
+                        label="Name"
+                        defaultValue="Camille"
+                        onChange={e => { this.setState({ name: e.target.value }) }}
+                    >
+                        <Option value="camille" label="Camille" />
+                        <Option value="kerry" label="Kerry" />
+                    </Select>
 
-                <Input floatingLabel label="Amount" type="number" value={this.state.amount} 
-                onChange={this.handleChangeAmount}/>
-  
+                    <Select
+                        label="type"
+                        onChange={e => { this.setState({ type: e.target.value }) }}
+                    >
+                        <Option value="grocery" label="Grocery" />
+                        <Option value="pharmacy" label="Pharmacy" />
+                        <Option value="other" label="Option" />
+                    </Select>
 
-                <div className="datepicker">
-                <DatePicker
-                    inline
-                    selected={this.state.startDate}
-                    onChange={this.handleChangeDate}
-                />
-                </div>
+                    <Input floatingLabel label="Amount" type="number" value={this.state.amount}
+                        onChange={this.handleChangeAmount} />
 
-                <div className="button-container">
-                    <button className="submit" type="submit" onClick={this.handleSubmit}>Save</button>
-                </div>
+
+                    <div className="datepicker">
+                        <DatePicker
+                            inline
+                            selected={this.state.date}
+                            onChange={this.handleChangeDate}
+                        />
+                    </div>
+
+                    <div className="button-container">
+                        <button className="submit" type="submit" onClick={this.handleSubmit}>Save</button>
+                    </div>
                 </Form>
             </div>
         );
