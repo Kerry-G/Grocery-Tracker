@@ -18,7 +18,8 @@ mongoose.Promise = global.Promise;
 // connect to MongoDB
 let dev = 'mongodb://192.168.2.24:27017/grocery-tracker';
 let prod = 'mongodb://127.0.0.1:8080/grocery-tracker'
-mongoose.connect(dev)
+let ip = process.env.NODE_ENV === 'production' ? prod : dev
+mongoose.connect(ip)
   .then(() =>  console.log('Mongo connection succesful'))
   .catch((err) => console.error(err));
 
