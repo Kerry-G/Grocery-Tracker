@@ -63,7 +63,9 @@ class Stats extends Component {
     render() {
         let diff = (this.state.due.amount === 0 ) 
             ? <p> Neither of us should put less money in the joint account! </p> 
-            : <p> {this.state.due.name} should put {this.state.due.amount}$ <i>less</i> in the joint account </p>
+            : this.state.due.name === "Kerry" 
+                ? <p> Camille should put {this.state.due.amount}$ <b>more</b> in the joint account </p>
+                : <p> {this.state.due.name} should put {this.state.due.amount}$ <b>less</b> in the joint account </p>
         let unpaid = this.unpaidAmount(this.state.receipts)
         let unpaidList = unpaid.map((receipt,index)=>
         <li key={index}>{this.capitalizeFirstLetter(receipt.name)} added {receipt.amount} $</li>
