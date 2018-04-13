@@ -9,11 +9,12 @@ class Stats extends Component {
             receipts: [],
             due: { name: "", amount: "" }
         };
+        this.handlePaid = this.handlePaid.bind(this)
     }
 
     componentDidMount() {
         this.getReceipts()
-        .then(receipt=>this.handleUnpaidAmount(receipt))
+        .then(receipt=>this.handleDifferenceUnpaid(receipt))
         .catch(err=>console.error(err))
     }
     
@@ -25,9 +26,13 @@ class Stats extends Component {
         })
     }
 
-    handleUnpaidAmount(receipts){
-        let unpaid = receipts
+    unpaidAmount(receipts){
+        return receipts
         .filter(receipt => receipt.paid === false)
+    }
+
+    handleDifferenceUnpaid(receipts){
+        let unpaid = this.unpaidAmount(receipts);
         let kerryUnpaidAmount = this.computeAmount("kerry", unpaid);
         let camilleUnpaidAmount = this.computeAmount("camille", unpaid);
         let differenceUnpaid = Math.abs(kerryUnpaidAmount - camilleUnpaidAmount)
@@ -44,15 +49,33 @@ class Stats extends Component {
             }, 0);
     }
 
+    handlePaid(){
+        fetchAPI("PATCH")
+        this.getReceipts()
+        .then(receipt=>this.handleDifferenceUnpaid(receipt))
+        .catch(err=>console.error(err))
+    }
+
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     render() {
         let diff = (this.state.due.amount === 0 ) 
             ? <p> Neither of us should put less money in the joint account! </p> 
             : <p> {this.state.due.name} should put {this.state.due.amount}$ <i>less</i> in the joint account </p>
+        let unpaid = this.unpaidAmount(this.state.receipts)
+        let unpaidList = unpaid.map((receipt,index)=>
+        <li key={index}>{this.capitalizeFirstLetter(receipt.name)} added {receipt.amount} $</li>
+        )
         return (
-            <div>
+            <React.Fragment>
+                <h2>To be paid</h2>
                 {diff}
-                <Button variant="raised" onClick={()=>fetchAPI("PATCH")}> Paid </Button>
-            </div>
+                <Button variant="raised" onClick={this.handlePaid}>Paid</Button>
+                <h2>Details</h2>
+                {unpaidList}
+            </React.Fragment>
         );
     }
 }

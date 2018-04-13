@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       menu:false,
-      activeComponent:0
+      activeComponent:1
     }
     this.showMenu = this.showMenu.bind(this)
     this.hideMenu = this.hideMenu.bind(this)
