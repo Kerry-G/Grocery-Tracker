@@ -37,8 +37,8 @@ class Stats extends Component {
         let genUnpaidAmount = this.computeAmount("genevieve", unpaid);
         let differenceUnpaid = Math.abs(kerryUnpaidAmount - genUnpaidAmount)
         kerryUnpaidAmount > genUnpaidAmount 
-            ? this.setState ({due:{name:"Kerry", amount:differenceUnpaid}})
-            : this.setState ({due:{name:"Genevi&egrave;ve", amount:differenceUnpaid}})
+            ? this.setState ({due:{name:"Genevi&egrave;ve", amount:differenceUnpaid}})
+            : this.setState ({due:{name:"Kerry", amount:differenceUnpaid}})
     }
 
     computeAmount(person, receiptsArray) {
