@@ -56,7 +56,7 @@ class FormReceipts extends Component {
 
     defaultState() {
         this.setState({
-            name: "camille",
+            name: "kerry",
             amount: "",
             startDate: moment(),
             type: "grocery"
@@ -71,7 +71,7 @@ class FormReceipts extends Component {
                     defaultValue="Camille"
                     onChange={e => { this.setState({ name: e.target.value }) }}
                 >
-                    <Option value="camille" label="Camille" />
+                    <Option value="genevieve" label="Genevi&egrave;ve" />
                     <Option value="kerry" label="Kerry" />
                 </Select>
 
@@ -79,9 +79,12 @@ class FormReceipts extends Component {
                     label="type"
                     onChange={e => { this.setState({ type: e.target.value }) }}
                 >
+                    <Option value="restaurent" label="Restaurent" />
+                    <Option value="bar" label="Bar" />
                     <Option value="grocery" label="Grocery" />
                     <Option value="pharmacy" label="Pharmacy" />
-                    <Option value="other" label="Option" />
+                    <Option value="activity" label="Activity" />
+                    <Option value="other" label="Other" />
                 </Select>
 
                 <Input floatingLabel label="Amount" type="number" value={this.state.amount}
