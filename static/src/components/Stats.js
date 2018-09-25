@@ -34,11 +34,11 @@ class Stats extends Component {
     handleDifferenceUnpaid(receipts){
         let unpaid = this.unpaidAmount(receipts);
         let kerryUnpaidAmount = this.computeAmount("kerry", unpaid);
-        let camilleUnpaidAmount = this.computeAmount("camille", unpaid);
-        let differenceUnpaid = Math.abs(kerryUnpaidAmount - camilleUnpaidAmount)
-        kerryUnpaidAmount > camilleUnpaidAmount 
+        let genUnpaidAmount = this.computeAmount("genevieve", unpaid);
+        let differenceUnpaid = Math.abs(kerryUnpaidAmount - genUnpaidAmount)
+        kerryUnpaidAmount > genUnpaidAmount 
             ? this.setState ({due:{name:"Kerry", amount:differenceUnpaid}})
-            : this.setState ({due:{name:"Camille", amount:differenceUnpaid}})
+            : this.setState ({due:{name:"Genevi&egrave;ve", amount:differenceUnpaid}})
     }
 
     computeAmount(person, receiptsArray) {
@@ -62,10 +62,8 @@ class Stats extends Component {
 
     render() {
         let diff = (this.state.due.amount === 0 ) 
-            ? <p> Neither of us should put less money in the joint account! </p> 
-            : this.state.due.name === "Kerry" 
-                ? <p> Camille should put {this.state.due.amount}$ <b>more</b> in the joint account </p>
-                : <p> {this.state.due.name} should put {this.state.due.amount}$ <b>less</b> in the joint account </p>
+            ? <p> We're quits </p>
+            : <p> {this.state.due.name} owns {this.state.due.amount}$ </p>
         let unpaid = this.unpaidAmount(this.state.receipts)
         let unpaidList = unpaid.map((receipt,index)=>
         <li key={index}>{this.capitalizeFirstLetter(receipt.name)} added {receipt.amount} $</li>

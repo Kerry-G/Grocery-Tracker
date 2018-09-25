@@ -11,7 +11,7 @@ class FormReceipts extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: "camille",
+            name: "kerry",
             amount: "",
             date: moment(),
             type: "grocery",
@@ -68,7 +68,7 @@ class FormReceipts extends Component {
             <Form>
                 <Select
                     label="Name"
-                    defaultValue="Camille"
+                    defaultValue="Kerry"
                     onChange={e => { this.setState({ name: e.target.value }) }}
                 >
                     <Option value="genevieve" label="Genevi&egrave;ve" />
@@ -79,7 +79,7 @@ class FormReceipts extends Component {
                     label="type"
                     onChange={e => { this.setState({ type: e.target.value }) }}
                 >
-                    <Option value="restaurent" label="Restaurent" />
+                    <Option value="restaurent" label="Restaurant" />
                     <Option value="bar" label="Bar" />
                     <Option value="grocery" label="Grocery" />
                     <Option value="pharmacy" label="Pharmacy" />
