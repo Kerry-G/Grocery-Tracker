@@ -66,7 +66,8 @@ class Stats extends Component {
             : <p> {this.state.due.name} owns {this.state.due.amount}$ </p>
         let unpaid = this.unpaidAmount(this.state.receipts)
         let unpaidList = unpaid.map((receipt,index)=>
-        <li key={index}>{this.capitalizeFirstLetter(receipt.name)} added {receipt.amount} $</li>
+        <li key={index}>
+        {this.capitalizeFirstLetter(receipt.name)} added {receipt.amount}$ ({receipt.type})</li>
         )
         return (
             <React.Fragment>

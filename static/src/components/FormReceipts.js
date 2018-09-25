@@ -102,6 +102,7 @@ class FormReceipts extends Component {
                 <div className="button-container">
                     <button className="submit" type="submit" onClick={this.handleSubmit}>Save</button>
                 </div>
+                <p className="disclaimer">Made with <span>♥</span> by Kerry Gougeon</p>
             </Form>
         );
     }

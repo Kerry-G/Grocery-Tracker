@@ -98,7 +98,7 @@ header {
   width: 1em;
   height: 0.15em;
   background: black;
-  box-shadow: 0 0.25em 0 0 black, 0 0.5em 0 0 black; }
+  box-shadow: 0 0.25em 0 0 black, 0 0.5em 0 0 black; }
 
 .container {
   margin: 20px;
@@ -147,3 +147,10 @@ input {
 .button-container {
   display: flex;
   justify-content: center; }
+
+.disclaimer {
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: center; }
+  .disclaimer span {
+    color: red; }

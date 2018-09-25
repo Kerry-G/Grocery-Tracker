@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <header>
       <a className={"hamburger" + style} onClick={handleClick}>&#9776;</a>
-      <h1 className={style}>Grocery Tracker</h1>
+      <h1 className={style}>Tracker</h1>
       </header>
     );
   }

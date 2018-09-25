@@ -179,3 +179,12 @@ input {
   display:flex;
   justify-content:center;
 }
+
+.disclaimer{
+  font-size: 11px;
+  margin-top:5px;
+  text-align: center;
+  span{
+    color: red;
+  }
+}
