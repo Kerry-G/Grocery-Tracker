@@ -68,7 +68,7 @@ class FormReceipts extends Component {
             <Form>
                 <Select
                     label="Name"
-                    defaultValue="Kerry"
+                    defaultValue="kerry"
                     onChange={e => { this.setState({ name: e.target.value }) }}
                 >
                     <Option value="genevieve" label="Genevi&egrave;ve" />
