@@ -63,11 +63,13 @@ class Stats extends Component {
     render() {
         let diff = (this.state.due.amount === 0 ) 
             ? <p> We're quits </p>
-            : <p> {this.state.due.name} owns {this.state.due.amount}$ </p>
+            : <p> {this.state.due.name} owns {this.state.due.amount/2}$ </p>
         let unpaid = this.unpaidAmount(this.state.receipts)
-        let unpaidList = unpaid.map((receipt,index)=>
-        <li key={index}>
-        {this.capitalizeFirstLetter(receipt.name)} added {receipt.amount}$ ({receipt.type})</li>
+        let unpaidList = unpaid.map(
+            (receipt,index) =>
+            <li key={index}>
+                {this.capitalizeFirstLetter(receipt.name)} added {receipt.amount}$ ({receipt.type})
+            </li>
         )
         return (
             <React.Fragment>

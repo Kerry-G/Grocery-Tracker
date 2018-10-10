@@ -11,7 +11,7 @@ class FormReceipts extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: "kerry",
+            name: "genevieve",
             amount: "",
             date: moment(),
             type: "grocery",
@@ -43,7 +43,6 @@ class FormReceipts extends Component {
     handleSubmit(e) {
         e.preventDefault()
         this.defaultState()
-        console.log(this.state)
         let date = this.state.date.format()
         let body = ({
             name: this.state.name,
@@ -51,12 +50,13 @@ class FormReceipts extends Component {
             amount: this.state.amount,
             date
         })
+        console.log(body)
         fetchAPI("POST", "", body)
     }
 
     defaultState() {
-        this.setState({
-            name: "kerry",
+        this.setState({ 
+            name: "genevieve",
             amount: "",
             startDate: moment(),
             type: "grocery"
@@ -68,7 +68,7 @@ class FormReceipts extends Component {
             <Form>
                 <Select
                     label="Name"
-                    defaultValue="kerry"
+                    value={this.state.name}
                     onChange={e => { this.setState({ name: e.target.value }) }}
                 >
                     <Option value="genevieve" label="Genevi&egrave;ve" />

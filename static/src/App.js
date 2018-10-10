@@ -3,6 +3,7 @@ import Header from './components/Header'
 import FormReceipts from './components/FormReceipts'
 import Stats from './components/Stats'
 import Menu from './components/Menu'
+import Text from './components/Text'
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   render() {
-    let componentList = [<FormReceipts />,<Stats />]
+    let componentList = [<FormReceipts />,<Stats />, <Text/>]
     let style = this.state.menu ? " visible" : ""
     return (
       <div className="App">

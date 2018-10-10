@@ -13,7 +13,7 @@ class Menu extends Component {
 
     render() {
         let visible = this.props.show ? " visible": ""
-        let menuList = ["New Entry", "To be paid"]
+        let menuList = ["New Entry", "To be paid", "Petit message"]
         let renderMenu = menuList.map((menuElement,index)=>{
             let style = this.props.activeComponent === index ? " active" : ""
             return (<a 
