@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Header extends Component {
-  render() {
-    let visible = this.props.show
-    let style = visible ? " visible" : ""
-    let handleClick = visible ? this.props.hideMenu : this.props.showMenu
-    return (
-      <header>
+const Header = (props) => {
+  const visible = props.show
+  const style = visible ? " visible" : ""
+  const handleClick = visible ? props.hideMenu : props.showMenu
+  
+  return (
+    <header>
       <a className={"hamburger" + style} onClick={handleClick}>&#9776;</a>
       <h1 className={style}>Tracker</h1>
-      </header>
-    );
-  }
+    </header>
+  );
+
 }
 
 export default Header;

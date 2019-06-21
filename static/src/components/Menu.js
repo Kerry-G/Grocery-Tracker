@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Menu extends Component {
-    constructor(props){
-        super(props);
-        this.handleClick = this.handleClick.bind(this)
+const Menu = (props) => {
+
+    const handleClick = (i) => {
+        props.setActiveComponent(i)
+        props.hideMenu()
     }
 
-    handleClick(i){
-        this.props.setActiveComponent(i)
-        this.props.hideMenu()
-    }
+    const visible = props.show ? " visible" : ""
+    const menuList = ["New Entry", "To be paid", "Petit message"]
+    const renderMenu = menuList.map((menuElement, index) => {
+        const style = props.activeComponent === index ? " active" : ""
+        return (<a
+            className={"menu-element" + style}
+            key={index}
+            onClick={() => handleClick(index)}
+        >
+            {menuElement}
+        </a>)
+    })
 
-    render() {
-        let visible = this.props.show ? " visible": ""
-        let menuList = ["New Entry", "To be paid", "Petit message"]
-        let renderMenu = menuList.map((menuElement,index)=>{
-            let style = this.props.activeComponent === index ? " active" : ""
-            return (<a 
-                className={"menu-element" + style}
-                key={index} 
-                onClick={() =>this.handleClick(index)}
-            >
-                {menuElement}
-            </a>)
-        })
-        return (
+    return (
         <aside className={"menu" + visible}>
-        <div className="menu-list">
-            {renderMenu}
-        </div>
+            <div className="menu-list">
+                {renderMenu}
+            </div>
         </aside>
-        )
-    }
+    )
+
 }
 
 export default Menu;
