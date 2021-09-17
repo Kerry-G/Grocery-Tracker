@@ -17,6 +17,7 @@ router.post('/', (req, res, next) => {
     type: req.body.type,
     amount:req.body.amount,
     date: req.body.date,
+    description: req.body.description,
     paid: false
   })
   Receipts.create(receipts, (err, receipts) => {

@@ -6,11 +6,13 @@ import Input from 'muicss/lib/react/input';
 import Select from 'muicss/lib/react/select';
 import Option from 'muicss/lib/react/option';
 
+
 const FormReceipts = (props) => {
     const [name, setName] = useState("genevieve");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState(new Date());
     const [type, setType] = useState("grocery");
+    const [description, setDescription] = useState("");
 
     function handleChangeDate(date) {
         setDate(date);
@@ -24,7 +26,7 @@ const FormReceipts = (props) => {
     function handleSubmit(e) {
         e.preventDefault()
         defaultState()
-        let body = ({ name, type, amount, date })
+        let body = ({ name, type, amount, date, description })
         fetchAPI("POST", "", body)
     }
 
@@ -33,6 +35,7 @@ const FormReceipts = (props) => {
         setAmount("");
         setDate(new Date());
         setType("grocery");
+        setDescription("")
     }
 
     return (
@@ -58,8 +61,12 @@ const FormReceipts = (props) => {
                 <Option value="other" label="Other" />
             </Select>
 
+
             <Input floatingLabel label="Amount" type="number" value={amount}
                 onChange={handleChangeAmount} />
+
+            <Input floatingLabel label="Description" type="text" value={description}
+                   onChange={(e) => setDescription(e.target.value)} />
 
             <div className="datepicker">
                 <DatePicker

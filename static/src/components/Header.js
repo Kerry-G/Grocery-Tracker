@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <header>
       <a className={"hamburger" + style} onClick={handleClick}>&#9776;</a>
-      <h1 className={style}>Tracker</h1>
+      <h1 className={style}>Trackers</h1>
     </header>
   );
 

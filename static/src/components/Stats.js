@@ -65,6 +65,7 @@ const Stats = (props) => {
         (receipt, index) =>
             <li key={index}>
                 {capitalizeFirstLetter(receipt.name)} added {receipt.amount}$ ({receipt.type})
+                <span> {receipt.description} </span>
             </li>
     )
     return (

@@ -3,7 +3,6 @@ import Header from './components/Header'
 import FormReceipts from './components/FormReceipts'
 import Stats from './components/Stats'
 import Menu from './components/Menu'
-import Text from './components/Text'
 
 const App = () => {
 
@@ -18,7 +17,7 @@ const App = () => {
     setMenu(false)
   };
 
-  const componentList = [<FormReceipts />, <Stats />, <Text />];
+  const componentList = [<FormReceipts />, <Stats />];
   const style = menu ? " visible" : "";
 
   return (
